@@ -37,13 +37,13 @@ sfomuseum.golang.wasm = (function(){
 		    headers: fetch_headers,
 		};
 
-		self.debug("fetch wasm binary", wasm_uri);
+		console.debug("fetch wasm binary", wasm_uri);
 		
 		WebAssembly.instantiateStreaming(fetch(wasm_uri, fetch_opts), export_go.importObject).then(
 		    
 		    async result => {
 
-			self.debug("retrieved wasm binary", wasm_uri);			
+			console.debug("retrieved wasm binary", wasm_uri);			
 			
 			pending -= 1;
 			
@@ -59,11 +59,6 @@ sfomuseum.golang.wasm = (function(){
 		
 	    });
 	},
-
-	'log': function(msg) {
-	    var dt = new Date();
-	    console.log("[wasm][" + dt.toISOString() + "] fetch " + msg);	    
-	}
     };
 
     return self;
